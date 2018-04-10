@@ -40,7 +40,7 @@ $(function(){
 		this.name = responseItem.name;
 		this.flag = responseItem.flag;
 		this.capital = responseItem.capital;
-		this.currency = responseItem.currencies.name;
+		this.currency = (responseItem.currencies.length > 0)? responseItem.currencies[0].name: 'no currency';
 
 		this.$element = createCountry();
 
