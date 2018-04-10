@@ -5,8 +5,14 @@ $(function(){
 
 	$('#search').click(searchCountries);
 
+	$('#query-input').keypress(function(event) {
+		if (event.which === 13) {
+			searchCountries();
+		}
+	});
+
 	function searchCountries() {
-		countryName = $('#country-name').val().trim();
+		countryName = $('#query-input').val().trim();
 		if(!countryName.length) {
 			return;
 		}
@@ -27,7 +33,7 @@ $(function(){
 			$listItem.appendTo($countriesList);
 		});
 		$('#results-count').text(response.length);
-		$('#query-string').text(countryName);
+		$('#query-string-success').text(countryName);
 		$('#results-found').removeClass('d-none');
 		$('#results-not-found').addClass('d-none');
 		$countriesList.removeClass('d-none');
