@@ -23,18 +23,8 @@ $(function(){
 		$countriesList.empty();
 		var matchesCount = 0;
 		response.forEach(function(item) {
-			
-			// why this section does not work?
-			/*
-			var $listItem = $('<li>').append(new Country(item));
-			//$countriesList.append($listItem);
+			var $listItem = $('<li>').append((new Country(item)).$element);
 			$listItem.appendTo($countriesList);
-			*/
-			 
-			// why only this section works?
-			var $listItem = $('<li>').text(item.name);
-			$listItem.appendTo($countriesList);
-			
 		});
 		$('#search-status').text('Found ' + response.length + ' matching items for "' + countryName + '"');
 
@@ -52,7 +42,7 @@ $(function(){
 		this.capital = responseItem.capital;
 		this.currency = responseItem.currencies.name;
 
-		this.$elemant = createCountry();
+		this.$element = createCountry();
 
 		function createCountry() {
 			var $country = $('<div>').addClass('country-item');
@@ -66,14 +56,7 @@ $(function(){
 				.append($flag)
 				.append($capital)
 				.append($currency);
-			//console.log('created: '+ $country.text());
 			return $country;
 		}
 	}
-
-	//Country.prototype = {
-	// 	// what shoud go here?
-	//};
-
-
 });
